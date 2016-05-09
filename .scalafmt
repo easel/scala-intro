@@ -1,0 +1,10 @@
+--style defaultWithAlign
+#--rewriteTokens ⇒;=>,←;<-
+--rewriteTokens =>;⇒,<-;←
+#--style scala.js
+--maxColumn 112
+--assumeStandardLibraryStripMargin true
+--continuationIndentCallSite 2
+#--continuationIndentDefnSite
+#--spacesInImportCurlyBraces true
+#--alignTokens =>;Case,=;Defn.(Va(l|r)|Def),->;Term.ApplyInfix,//;.*;=;:

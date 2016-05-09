@@ -1,6 +1,6 @@
 /* global module:false */
 module.exports = function(grunt) {
-	var port = grunt.option('port') || 8000;
+	var port = grunt.option('port') || 8001;
 	var base = grunt.option('base') || '.';
 
 	// Project configuration
@@ -129,10 +129,11 @@ module.exports = function(grunt) {
 				files: [ '*.html']
 			},
 			markdown: {
-				files: [ '*.md' ]
+				files: [ '*.md', 'slides/*.md' ]
 			},
 			options: {
-				livereload: true
+				livereload: true,
+				debounceDelay: 2000
 			}
 		}
 

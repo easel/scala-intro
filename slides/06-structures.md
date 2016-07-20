@@ -87,7 +87,7 @@ defined class MyAirCar
 Instantiating Concrete Types
 ```scala
 scala> val myCar = new Car("honda")
-myCar: Car = Car@33aa211
+myCar: Car = Car@2c38dad6
 ```
 
 Can be instantiated anonymously
@@ -97,10 +97,10 @@ scala> val myAirplane = new Vehicle with Flyable {
      |   val maxAirSpeed = 120
      |   override def maxSpeed = maxAirSpeed
      | }
-myAirplane: Vehicle with Flyable{val name: String; val maxAirSpeed: Int} = $anon$1@6d403693
+myAirplane: Vehicle with Flyable{val name: String; val maxAirSpeed: Int} = $anon$1@4fa5d32c
 
 scala> val myBird = new Flyable { val maxAirSpeed = 100 }
-myBird: Flyable{val maxAirSpeed: Int} = $anon$1@566eae10
+myBird: Flyable{val maxAirSpeed: Int} = $anon$1@69796c8e
 ```
 
 

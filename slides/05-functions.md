@@ -57,9 +57,9 @@ hello world - it's a beautiful day
 
 
 
-## Parameters can be Lazy
+## Parameters can be passed by name
 
-Takes parameters. Does not evaluate them until used.
+Takes parameters. Wraps them in a function. Re-evaluate's whenever used.
 
 ```scala
 scala> def myParamFunc = { 

@@ -118,4 +118,5 @@ object Polymorphism extends App {
   FBoundedPolyMorphism.main()
   println("TypeClass")
   TypeClass.main()
+  assert(false, "Assertions are enabled")
 }

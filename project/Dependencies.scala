@@ -2,14 +2,15 @@ import sbt._
 
 object Dependencies {
   object Versions {
-    val Akka = "2.4.2"
+    val Akka = "2.4.8"
     val AkkaStreamExtensions = "0.10.0"
-    val Cats = "0.5.0"
+    val Cats = "0.6.0"
+    val Circe = "0.4.1"
     val RevealJs = "3.2.0"
     val ScalaTex = "0.3.5"
     val ScalaJHttp = "2.3.0"
     val Slick = "3.1.1"
-    val ScalaTest = "3.0.0-RC4"
+    val ScalaTest = "3.0.0"
   }
 
   val Akka = Seq(
@@ -22,6 +23,12 @@ object Dependencies {
   val Cats = Seq(
     "org.typelevel" %% "cats" % Versions.Cats
   )
+  
+  val Circe = Seq(
+    "io.circe" %% "circe-core",
+    "io.circe" %% "circe-generic",
+    "io.circe" %% "circe-parser"
+  ).map(_ % Versions.Circe)
 
   val RevealJs = Seq(
     "org.webjars.bower" % "reveal.js" % Versions.RevealJs

@@ -22,9 +22,10 @@ do { println(i); i += 1 } while (i < 4)
 
 ## Pattern Matching
 ```tut
-val x = 1 match {
-  case 1 => "true"
-  case _ => "false"
+val thingToCheck = "my string"
+val x = thingToCheck match {
+  case x: String => s"was a string of length ${x.length}"
+  case _ => "was not a string"
 }
 ```
 

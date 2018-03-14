@@ -30,11 +30,14 @@ scala> do { println(i); i += 1 } while (i < 4)
 
 ## Pattern Matching
 ```scala
-scala> val x = 1 match {
-     |   case 1 => "true"
-     |   case _ => "false"
+scala> val thingToCheck = "my string"
+thingToCheck: String = my string
+
+scala> val x = thingToCheck match {
+     |   case x: String => s"was a string of length ${x.length}"
+     |   case _ => "was not a string"
      | }
-x: String = true
+x: String = was a string of length 9
 ```
 
 

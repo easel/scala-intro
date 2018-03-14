@@ -1,5 +1,8 @@
 /**
   * Created by erik on 7/20/16.
+  * 
+  * 
+  * References: https://tpolecat.github.io/2015/04/29/f-bounds.html
   */
 object SubType {
 
@@ -21,27 +24,40 @@ object SubType {
     def copy(name: String): Plane = new Plane(name)
   }
 
+  // Loses specific type information
+  def pluralize(a: Vehicle): Vehicle = {
+    a.copy(a.name + "s")
+  }
+
+  // Cannot implement this, does not compile.
+  // [error]  found   : SubType.Vehicle
+  //    [error]  required: A
+  //    [error]       a.copy(a.name + "s")
+
+  //    def pluralize[A <: Vehicle](a: A): A = {
+  //      a.copy(a.name + "s")
+  //    }
+
   def main(): Unit = {
     val car1: Car = new Car("my car")
     val car2: Car = car1.copy("my other car")
     println(s"${car2.name} = ${car2.getClass.getSimpleName} ")
     val car3: Vehicle = car1.copy("my car vehicle")
-    val plane: Plane = new Plane("my plane")
+    val plane: Plane  = new Plane("my plane")
     println(s"${car2.name} has ${car2.wheels} wheels")
     println(s"${car3.name} = ${car3.getClass.getSimpleName} ")
     println(s"${plane.name} = ${plane.getClass.getSimpleName} ")
     val x: Seq[Vehicle] = Seq(car1, car2, car3, plane)
+    println(s"Pluralizing my ${car1.getClass.getSimpleName} does not allow me to access pluralize(car1).wheels")
   }
 
-  //  def pluralize[A <: Vehicle](a: A): A = {
-  //    a.copy(a.name + "s")
-  //  }
+
 
 }
 
 object FBoundedPolyMorphism {
 
-  trait Vehicle[A <: Vehicle[A]] {
+  trait Vehicle[A <: Vehicle[A]] { this: A =>
     def name: String
 
     def copy(name: String): A
@@ -58,7 +74,7 @@ object FBoundedPolyMorphism {
 
     override def copy(name: String): Plane = new Plane(name)
   }
-  
+
   class Hovercraft(name: String) extends Plane(name)
 
   def pluralize[A <: Vehicle[A]](a: A): A = {
@@ -76,8 +92,9 @@ object FBoundedPolyMorphism {
     println(s"${plane2.name} has ${plane2.wings} wings")
     println(s"${plane2.name} = ${plane2.getClass.getSimpleName} ")
     val hover1: Hovercraft = new Hovercraft("my hovercraft")
-    val hover2 = hover1.copy("my other hovercraft")
+    val hover2             = hover1.copy("my other hovercraft")
     println(s"${hover2.name} = ${hover2.getClass.getSimpleName} ")
+    println(s"I can pluralize my car and still access it's wheels: ${pluralize(car1).wheels}")
   }
 }
 
@@ -114,9 +131,10 @@ object TypeClass {
 object Polymorphism extends App {
   println("SubTyping")
   SubType.main()
+  println("")
   println("F-Bounded PolyMorphism")
   FBoundedPolyMorphism.main()
+  println("")
   println("TypeClass")
   TypeClass.main()
-  assert(false, "Assertions are enabled")
 }
